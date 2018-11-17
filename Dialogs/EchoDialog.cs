@@ -15,8 +15,8 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
     public class EchoDialog : IDialog<object>
     {
         protected int count = 1;
-        public string subscriptionKey = "5dba748bf55e4741b06ece38a85cbcce";
-        public string subscriptionEndpoint = "https://eastus.api.cognitive.microsoft.com/face/v1.0";
+        public string subscriptionKey = "";
+        public string subscriptionEndpoint = "";
         public string guidPersona = string.Empty;
 
         public async Task StartAsync(IDialogContext context)
@@ -37,7 +37,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
             if (nombreUsuario == null)
             {
-                PromptDialog.Text(context, SeguirDespuesNombre, "Antes de continuar, podría preguntarle su nombre?");
+                PromptDialog.Text(context, SeguirDespuesNombre, "Antes de continuar, podrÃ­a preguntarle su nombre?");
                 return;
             }
             else { 
@@ -84,7 +84,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     promptStyle: PromptStyle.Auto);
                     break;
                 default:
-                    await context.PostAsync("Solamente estoy preparado para asistir en casos de consulta de deudas, por lo cual espero poder ayudarte la próxima vez. Gracias! :)");
+                    await context.PostAsync("Solamente estoy preparado para asistir en casos de consulta de deudas, por lo cual espero poder ayudarte la prÃ³xima vez. Gracias! :)");
                     break;
             };
            
@@ -134,7 +134,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     }
                     catch (Exception ex)
                     {
-                        await context.PostAsync("No se encontró la identidad de la persona. Para darla de alta utilizar el comando: \"alta\"");
+                        await context.PostAsync("No se encontrÃ³ la identidad de la persona. Para darla de alta utilizar el comando: \"alta\"");
                         
                     }
                     
@@ -196,8 +196,8 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     PromptDialog.Choice(context,
                         ElegirOpcion,
                         (IEnumerable<Opciones>)Enum.GetValues(typeof(Opciones)),
-                        "Por favor seleccione la opción deseada",
-                        "Opción no disponible",
+                        "Por favor seleccione la opciÃ³n deseada",
+                        "OpciÃ³n no disponible",
                         promptStyle: PromptStyle.Auto
                         );
                 
@@ -207,7 +207,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             }
             else
             {
-                await context.PostAsync("No reconozco el número de cliente. Intenta nuevamente por favor");
+                await context.PostAsync("No reconozco el nÃºmero de cliente. Intenta nuevamente por favor");
                 context.Wait(IngresoNumeroCliente);
             }
         }
@@ -242,7 +242,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             }
             else
             {
-                await context.PostAsync("Canceló la operación");
+                await context.PostAsync("CancelÃ³ la operaciÃ³n");
                 context.Done(this);
 
             }
